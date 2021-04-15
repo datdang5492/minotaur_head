@@ -1,102 +1,57 @@
-<a href="" class="btn btn-sm btn-link float-end">Export
-  <i class="mdi mdi-download ms-1"></i>
-</a>
-<h4 class="header-title mt-2 mb-3">Top Selling Products</h4>
+<div class="card">
+  <div class="card-body">
+    <a *ngIf="isWidget; else topRight" href="" class="btn btn-sm btn-link float-end">View more</a>
+    <ng-template #topRight>
+      <a *ngIf="exportFlag" href="" class="btn btn-sm btn-link float-end">Export
+        <i class="mdi mdi-download ms-1"></i>
+      </a>
+    </ng-template>
 
-<div class="table-responsive">
-  <table class="table table-centered table-nowrap table-hover mb-0">
-    <tbody>
-    <tr>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">ASOS Ridley High Waist</h5>
-        <span class="text-muted font-13">07 April 2018</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$79.49</h5>
-        <span class="text-muted font-13">Price</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">82</h5>
-        <span class="text-muted font-13">Quantity</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$6,518.18</h5>
-        <span class="text-muted font-13">Amount</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">Marco Lightweight Shirt</h5>
-        <span class="text-muted font-13">25 March 2018</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$128.50</h5>
-        <span class="text-muted font-13">Price</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">37</h5>
-        <span class="text-muted font-13">Quantity</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$4,754.50</h5>
-        <span class="text-muted font-13">Amount</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">Half Sleeve Shirt</h5>
-        <span class="text-muted font-13">17 March 2018</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$39.99</h5>
-        <span class="text-muted font-13">Price</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">64</h5>
-        <span class="text-muted font-13">Quantity</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$2,559.36</h5>
-        <span class="text-muted font-13">Amount</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">Lightweight Jacket</h5>
-        <span class="text-muted font-13">12 March 2018</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$20.00</h5>
-        <span class="text-muted font-13">Price</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">184</h5>
-        <span class="text-muted font-13">Quantity</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$3,680.00</h5>
-        <span class="text-muted font-13">Amount</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">Marco Shoes</h5>
-        <span class="text-muted font-13">05 March 2018</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$28.49</h5>
-        <span class="text-muted font-13">Price</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">69</h5>
-        <span class="text-muted font-13">Quantity</span>
-      </td>
-      <td>
-        <h5 class="font-14 my-1 fw-normal">$1,965.81</h5>
-        <span class="text-muted font-13">Amount</span>
-      </td>
-    </tr>
+    <h4 class="header-title mt-2 mb-3">{{this.reportTitle}}</h4>
 
-    </tbody>
-  </table>
+    <div class="table-responsive">
+      <table class="table table-centered table-nowrap table-hover mb-0">
+        <thead>
+        <tr>
+          <th *ngFor="let colTitle of colTitles">{{colTitle}}</th>
+        </tr>
+        </thead>
+
+        <tbody *ngIf="isDataAvailable(); else emptyTable">
+        <tr *ngFor="let data of tableData">
+          <td>
+            <a href="javascript: void(0);">
+              <h5 class="font-14 my-1 fw-normal">{{data.investor}}</h5>
+            </a>
+          </td>
+          <td>
+            <a href="javascript: void(0);" class="text-dark">
+              <h5 class="font-14 my-1 fw-normal">{{data.security}}</h5>
+            </a>
+          </td>
+          <td>
+            <h5 class="font-14 my-1 fw-normal">{{data.isin}}</h5>
+          </td>
+          <td>
+            <h5 class="font-14 my-1 fw-normal">{{data.position}}</h5>
+          </td>
+          <td>
+            <h5 class="font-14 my-1 fw-normal">{{data.positionChange}}</h5>
+          </td>
+          <td>
+            <h5 class="font-14 my-1 fw-normal">{{data.reportDate}}</h5>
+          </td>
+        </tr>
+        </tbody>
+
+        <ng-template #emptyTable>
+          <tr>
+            <td colspan="5">
+              <h5 class="font-14 my-1 fw-normal">There is no data</h5>
+            </td>
+          </tr>
+        </ng-template>
+      </table>
+    </div>
+  </div>
 </div>

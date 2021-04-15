@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SecurityPageComponent } from './security-page.component';
 
-import { ShortDetailComponent } from './short-detail.component';
-
-describe('ShortDetailComponent', () => {
-  let component: ShortDetailComponent;
-  let fixture: ComponentFixture<ShortDetailComponent>;
+describe('SecurityPageComponent', () => {
+  let component: SecurityPageComponent;
+  let fixture: ComponentFixture<SecurityPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShortDetailComponent ]
+      declarations: [ SecurityPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShortDetailComponent);
+    fixture = TestBed.createComponent(SecurityPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
