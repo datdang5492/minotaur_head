@@ -14,6 +14,8 @@ import {SumBoxComponent} from './widget/sum-box/sum-box.component';
 import {SecurityPageComponent} from './security-page/security-page.component';
 import {InvestorPageComponent} from './investor-page/investor-page.component';
 import {HomePageComponent} from './home-page/home-page.component';
+import {DashboardService} from './services/dashboard.service';
+import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
@@ -38,9 +40,12 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [
+    DashboardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

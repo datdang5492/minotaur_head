@@ -19,24 +19,32 @@
 
         <tbody *ngIf="isDataAvailable(); else emptyTable">
         <tr *ngFor="let data of tableData">
-          <td>
+          <td *ngIf="data.investor">
             <a href="javascript: void(0);">
               <h5 class="font-14 my-1 fw-normal">{{data.investor}}</h5>
             </a>
           </td>
-          <td>
+          <td *ngIf="data.security !== ''">
             <a href="javascript: void(0);" class="text-dark">
               <h5 class="font-14 my-1 fw-normal">{{data.security}}</h5>
             </a>
           </td>
-          <td>
+          <td *ngIf="data.isin">
             <h5 class="font-14 my-1 fw-normal">{{data.isin}}</h5>
           </td>
-          <td>
+          <td *ngIf="data.position">
             <h5 class="font-14 my-1 fw-normal">{{data.position}}</h5>
           </td>
-          <td>
-            <h5 class="font-14 my-1 fw-normal">{{data.positionChange}}</h5>
+          <td *ngIf="data.positionChange">
+            <h5 class="font-14 my-1 fw-normal">
+              <span *ngIf="data.positionChange < 0; else arrowUp;" class="text-danger me-2">
+                <i class="mdi mdi-arrow-down-bold"></i> {{data.positionChange}}</span>
+
+              <ng-template #arrowUp>
+                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> {{data.positionChange}}</span>
+              </ng-template>
+
+            </h5>
           </td>
           <td>
             <h5 class="font-14 my-1 fw-normal">{{data.reportDate}}</h5>

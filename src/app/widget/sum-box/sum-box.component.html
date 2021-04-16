@@ -1,67 +1,21 @@
-<div class="row">
-  <div class="col-lg-6">
-    <div class="card widget-flat">
-      <div class="card-body">
-        <div class="float-end">
-          <i class="mdi mdi-account-multiple widget-icon"></i>
-        </div>
-        <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Top short DE</h5>
-        <h3 class="mt-3 mb-3">36,254</h3>
-        <p class="mb-0 text-muted">
-          <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
-          <span class="text-nowrap">Since last month</span>
-        </p>
-      </div>
+<div class="card widget-flat">
+  <div class="card-body">
+    <div class="float-end">
+      <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="20">
     </div>
-  </div>
-
-  <div class="col-lg-6">
-    <div class="card widget-flat">
-      <div class="card-body">
-        <div class="float-end">
-          <i class="mdi mdi-cart-plus widget-icon bg-success-lighten text-success"></i>
-        </div>
-        <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Top short UK</h5>
-        <h3 class="mt-3 mb-3">5,543</h3>
-        <p class="mb-0 text-muted">
-          <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-          <span class="text-nowrap">Since last month</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-lg-6">
-    <div class="card widget-flat">
-      <div class="card-body">
-        <div class="float-end">
-          <i class="mdi mdi-currency-usd widget-icon bg-success-lighten text-success"></i>
-        </div>
-        <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Top short Wien</h5>
-        <h3 class="mt-3 mb-3">$6,254</h3>
-        <p class="mb-0 text-muted">
-          <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
-          <span class="text-nowrap">Since last month</span>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-6">
-    <div class="card widget-flat">
-      <div class="card-body">
-        <div class="float-end">
-          <i class="mdi mdi-pulse widget-icon"></i>
-        </div>
-        <h5 class="text-muted fw-normal mt-0" title="Growth">Top short France</h5>
-        <h3 class="mt-3 mb-3">+ 30.56%</h3>
-        <p class="mb-0 text-muted">
-          <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-          <span class="text-nowrap">Since last month</span>
-        </p>
-      </div>
-    </div>
+    <h4 class="mt-1 mb-1">{{boxData.marketName}}</h4>
+    <h5 class="text-muted fw-normal mt-0" title="Number of Customers">{{boxData.investorName}}</h5>
+    <h3 class="mt-3 mb-3">{{boxData.shortPosition}}%</h3>
+    <p class="mb-0 text-muted">
+      <span *ngIf="boxData.lastPositionChange >= 0; else negativePositionChange"
+            class="text-success me-2">
+        <i class="mdi mdi-arrow-up-bold"></i>
+        {{boxData.lastPositionChange}}%
+      </span>
+      <ng-template #negativePositionChange>
+        <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> {{boxData.lastPositionChange}}%</span>
+      </ng-template>
+      <span class="text-nowrap">on {{boxData.securityName}}</span>
+    </p>
   </div>
 </div>
