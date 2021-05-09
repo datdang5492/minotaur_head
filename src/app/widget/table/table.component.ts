@@ -11,9 +11,17 @@ import {DashboardService} from '../../services/dashboard.service';
 export class TableComponent implements OnInit {
 
   @Input()
+  isWidget = true;
+
+  @Input()
+  marketCode = '';
+
+  @Input()
+  securityUuid = '';
+
+  @Input()
   reportTitle = 'Top Selling Products';
 
-  isWidget = true;
   exportFlag = true;
 
   colTitles = [
@@ -28,7 +36,7 @@ export class TableComponent implements OnInit {
   tableData: NetShortRecord[] = [
     {
       investor: 'ASOS Ridley High Waist',
-      security: '',
+      security: 'dangbadat',
       isin: 'US88160R1014',
       position: 12,
       positionChange: 2.2,
@@ -36,7 +44,7 @@ export class TableComponent implements OnInit {
     },
     {
       investor: 'ASOS Ridley High Waist',
-      security: '',
+      security: '123',
       isin: 'US88160R1014',
       position: 12,
       positionChange: -2.2,
@@ -44,7 +52,7 @@ export class TableComponent implements OnInit {
     },
     {
       investor: 'ASOS Ridley High Waist',
-      security: '',
+      security: '123',
       isin: 'US88160R1014',
       position: 12,
       positionChange: 2.2,
@@ -52,7 +60,7 @@ export class TableComponent implements OnInit {
     },
     {
       investor: 'ASOS Ridley High Waist',
-      security: '',
+      security: '123',
       isin: 'US88160R1014',
       position: 12,
       positionChange: -2.2,
@@ -66,6 +74,23 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.isWidget) {
+      if (this.marketCode === '') {
+        return;
+      }
+
+      this.dashboardService.getTopInvestor(this.marketCode).subscribe((res: NetShortRecord[]) => {
+        this.tableData = res;
+      });
+    } else {
+      if (this.securityUuid === '') {
+        return;
+      }
+
+      this.dashboardService.getNetShortPosition(this.securityUuid).subscribe((res: NetShortRecord[]) => {
+        this.tableData = res;
+      });
+    }
   }
 
   isDataAvailable(): boolean {

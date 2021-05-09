@@ -10,6 +10,9 @@ import {DashboardService} from '../../services/dashboard.service';
 
 export class SumBoxComponent implements OnInit {
   @Input()
+  marketCode = '';
+
+  @Input()
   boxData: SumBoxInfo = {
     marketName: 'Frankfurt',
     marketCode: 'de',
@@ -26,6 +29,12 @@ export class SumBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.marketCode === '') {
+      return;
+    }
+    this.dashboardService.getMarketTopShortPosition(this.marketCode).subscribe((res: SumBoxInfo) => {
+      this.boxData = res;
+    });
   }
 
 }

@@ -16,3 +16,8 @@ export interface NetShortRecord {
   positionChange: number;
   reportDate: string;
 }
+
+export interface OptionItem {
+  label: string;
+  value: string;
+}

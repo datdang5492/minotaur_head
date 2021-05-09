@@ -4,31 +4,10 @@
   <ul class="side-nav">
     <li class="side-nav-title side-nav-item">Markets</li>
 
-    <li class="side-nav-item">
-      <a href="apps-calendar.html" class="side-nav-link">
+    <li *ngFor="let market of marketList" class="side-nav-item">
+      <a href="/market/{{market.value}}" class="side-nav-link">
         <i class="uil-calender"></i>
-        <span> Frankfurt </span>
-      </a>
-    </li>
-
-    <li class="side-nav-item">
-      <a href="apps-chat.html" class="side-nav-link">
-        <i class="uil-comments-alt"></i>
-        <span> London </span>
-      </a>
-    </li>
-
-    <li class="side-nav-item">
-      <a href="apps-chat.html" class="side-nav-link">
-        <i class="uil-comments-alt"></i>
-        <span> Moscow </span>
-      </a>
-    </li>
-
-    <li class="side-nav-item">
-      <a href="apps-chat.html" class="side-nav-link">
-        <i class="uil-comments-alt"></i>
-        <span> Wien </span>
+        <span> {{market.label}} </span>
       </a>
     </li>
 

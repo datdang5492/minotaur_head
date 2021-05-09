@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-security-page',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecurityPageComponent implements OnInit {
 
-  constructor() { }
+  securityUuid = '';
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute) {
+
   }
 
+  ngOnInit(): void {
+    // one way to get route param
+    // this.route.snapshot.params.uuid;
+    this.route.params.subscribe((params: Params) => {
+      this.securityUuid = params.uuid;
+      // this.dashboardService.getNetShortPosition(params.uuid)
+      //   .subscribe((res: NetShortRecord[]) => {
+      //     // this.tableData = res;
+      //   });
+    });
+  }
 }

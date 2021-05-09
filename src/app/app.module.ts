@@ -19,7 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'security', component: SecurityPageComponent},
+  {path: 'security/:uuid', component: SecurityPageComponent},
   {path: 'investor', component: InvestorPageComponent}
 ];
 
