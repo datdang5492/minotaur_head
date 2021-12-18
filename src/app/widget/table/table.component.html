@@ -20,12 +20,12 @@
         <tbody *ngIf="isDataAvailable(); else emptyTable">
         <tr *ngFor="let data of tableData">
           <td *ngIf="data.investor">
-            <a [routerLink]="['/security', data.security]">
+            <a [routerLink]="['/investor', data.investor]">
               <h5 class="font-14 my-1 fw-normal">{{data.investor}}</h5>
             </a>
           </td>
           <td *ngIf="data.security !== ''">
-            <a href="javascript: void(0);" class="text-dark">
+            <a [routerLink]="['/security', data.security]">
               <h5 class="font-14 my-1 fw-normal">{{data.security}}</h5>
             </a>
           </td>

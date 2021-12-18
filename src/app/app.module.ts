@@ -19,8 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent},
-  {path: 'security/:uuid', component: SecurityPageComponent},
-  {path: 'investor', component: InvestorPageComponent}
+  {path: 'security/:isin', component: SecurityPageComponent},
+  {path: 'investor/:uuid', component: InvestorPageComponent},
 ];
 
 @NgModule({

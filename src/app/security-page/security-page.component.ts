@@ -18,7 +18,7 @@ export class SecurityPageComponent implements OnInit {
     // one way to get route param
     // this.route.snapshot.params.uuid;
     this.route.params.subscribe((params: Params) => {
-      this.securityUuid = params.uuid;
+      this.securityUuid = params.isin;
       // this.dashboardService.getNetShortPosition(params.uuid)
       //   .subscribe((res: NetShortRecord[]) => {
       //     // this.tableData = res;
